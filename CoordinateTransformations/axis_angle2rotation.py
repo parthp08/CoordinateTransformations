@@ -1,6 +1,5 @@
 import numpy as np
-# from .compound_transforms import compound_transforms
-from compound_transforms import compound_transforms
+from .compound_transforms import compound_transforms
 
 def axis_angle2rotation(vector_, theta, unit='rad', pass_through_origin=True, pass_point=np.zeros((3,1))):
     """

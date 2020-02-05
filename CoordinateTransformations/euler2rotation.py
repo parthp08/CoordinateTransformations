@@ -1,10 +1,7 @@
 import numpy as np
-# from .R_x import R_x
-# from .R_y import R_y
-# from .R_z import R_z
-from R_x import R_x
-from R_y import R_y
-from R_z import R_z
+from .R_x import R_x
+from .R_y import R_y
+from .R_z import R_z
 
 def euler2rotation(alpha,phi,theta,unit="rad",order="xyz"):
     """

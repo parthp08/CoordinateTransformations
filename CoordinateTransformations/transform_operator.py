@@ -1,6 +1,5 @@
 import numpy as np
-# from .pure_translation import pure_translation
-from pure_translation import pure_translation
+from .pure_translation import pure_translation
 
 def transform_operator(T, point):
     """

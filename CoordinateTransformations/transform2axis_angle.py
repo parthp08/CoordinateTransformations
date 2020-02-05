@@ -1,6 +1,5 @@
 import numpy as np
-# from .rotation2axis_angle import rotation2axis_angle
-from rotation2axis_angle import rotation2axis_angle
+from .rotation2axis_angle import rotation2axis_angle
 
 def transform2axis_angle(T, output_unit="rad"):
     """

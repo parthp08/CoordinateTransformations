@@ -1,6 +1,5 @@
 import numpy as np
-# from .rotation2euler import rotation2euler
-from rotation2euler import rotation2euler
+from .rotation2euler import rotation2euler
 
 def transform2euler(T, output_unit='rad'):
     """

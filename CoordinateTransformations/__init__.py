@@ -16,6 +16,7 @@ from .inverse_transform import inverse_transform
 # Translation functions
 from .pure_translation import pure_translation
 from .T_translation import T_translation
+from .RP2T import RP2T
 
 # from Rotation Matrix to .... functions
 from .rotation2euler import rotation2euler
@@ -47,6 +48,10 @@ from .cylindrical2cartesian import cylindrical2cartesian
 from .cylindrical2spherical import cylindrical2spherical
 from .spherical2cartesian import spherical2cartesian
 from .spherical2cylindrical import spherical2cylindrical
+
+# Screw functions
+from .Screw_X import Screw_X
+from .Screw_Z import Screw_Z
 
 # plotting functions
 

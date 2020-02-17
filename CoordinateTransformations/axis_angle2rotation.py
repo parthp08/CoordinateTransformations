@@ -35,7 +35,7 @@ def axis_angle2rotation(vector_, theta, unit='rad', pass_through_origin=True, pa
         T_b_dash_b = np.matrix(np.eye(4))        
         T_b_dash_b[:3,3] = -pass_point
 
-        R_a_dash_b_dash = axis_rotation(vector_, theta, unit=unit)
+        R_a_dash_b_dash = axis_angle2rotation(vector_, theta, unit=unit)
         print(R_a_dash_b_dash)
         T_a_dash_b_dash = np.matrix(np.zeros((4,4)))
         T_a_dash_b_dash[3,3] = 1

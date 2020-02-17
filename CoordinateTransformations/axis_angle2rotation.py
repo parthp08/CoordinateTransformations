@@ -47,7 +47,7 @@ def axis_angle2rotation(vector_, theta, unit='rad', pass_through_origin=True, pa
 
         T_ab = compound_transforms(T_a_a_dash, compound_transforms(T_a_dash_b_dash, T_b_dash_b))
 
-        return T_ab
+        return T_ab[:3,:3]
 
     if unit.lower() == "deg":
         theta = np.deg2rad(theta)

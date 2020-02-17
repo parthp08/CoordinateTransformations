@@ -11,6 +11,7 @@ from .T_y import T_y
 from .T_z import T_z
 from .transform_operator import transform_operator
 from .compound_transforms import compound_transforms
+from .compound_transforms_v2 import compound_transforms_v2
 from .inverse_transform import inverse_transform
 
 # Translation functions

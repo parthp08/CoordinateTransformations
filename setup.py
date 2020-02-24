@@ -7,11 +7,32 @@ def readme():
 setup(
     name='CoordinateTransformations',
     version='0.1',
-    packages=['CoordinateTransformations'],
+    py_modules=['CoordinateTransformations'],
+    package_dir = {'': 'CoordinateTransformations'},
     long_description=readme(),
     long_description_content_type='md',
     url='',
     author='Parth Viradiya',
     author_email='parthviradiya08@gmail.com',
     license='MIT',
+    classfiers = [
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
+        "Operating System :: OS Independent",
+        'License :: OSI Approved :: MIT License',        
+    ],
+    keywords=[
+        'robotics', 'coordinate transformations', 'robot kinematics',
+    ],
+    install_requires = [
+        "numpy > 1.5",
+    ],    
+    extras_require = {
+        "dev": [
+            "pytest >= 3.7",
+        ],
+    },
 )
+

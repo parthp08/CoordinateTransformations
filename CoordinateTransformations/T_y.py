@@ -20,5 +20,5 @@ def T_y(phi, unit="rad"):
 
     T = np.matrix(np.zeros((4,4)))
     T[3,3] = 1
-    T [0:3, 0:3] = R_x(phi, unit=unit)
+    T [0:3, 0:3] = R_y(phi, unit=unit)
     return T

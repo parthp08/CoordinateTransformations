@@ -14,20 +14,6 @@ setup(
     author='Parth Viradiya',
     author_email='parthviradiya08@gmail.com',
     license='MIT',
-)
-
-"""
-setup(
-    name='CoordinateTransformations',
-    version='0.1',
-    py_modules=['CoordinateTransformations'],
-    package_dir = {'': 'CoordinateTransformations'},
-    long_description=readme(),
-    long_description_content_type='text/markdown',
-    url='',
-    author='Parth Viradiya',
-    author_email='parthviradiya08@gmail.com',
-    license='MIT',
     classfiers = [
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.6",
@@ -48,4 +34,3 @@ setup(
         ],
     },
 )
-"""

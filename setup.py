@@ -1,7 +1,7 @@
 from setuptools import setup
 
 def readme():
-    with open('README.rst') as f:
+    with open('README.md') as f:
         return f.read()
 
 setup(
@@ -10,6 +10,7 @@ setup(
     py_modules=['CoordinateTransformations'],
     package_dir = {'': 'CoordinateTransformations'},
     long_description=readme(),
+    long_description_content_type='text/markdown',
     url='',
     author='Parth Viradiya',
     author_email='parthviradiya08@gmail.com',

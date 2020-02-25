@@ -27,6 +27,7 @@ R_x(30, unit='deg')
 # Generate Homogeneous Transformation matrix from rotation matrix"
 R2T(R_x(30, unit='deg'))
 ```
+for more example see tests files
 
 # Developing CoordinateTransformations
 

@@ -1,0 +1,5 @@
+include LICENSE
+include pytest.ini
+recursive-include CoordinateTransformations *.py
+recursive-include CoordinateTransformations *.txt
+recursive-include tests *.py

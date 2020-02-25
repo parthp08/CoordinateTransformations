@@ -3,19 +3,26 @@ from .R_y import R_y
 
 def T_y(phi, unit="rad"):
     """
-    homogeneous transformation matrix rotated around Y axis by alpha angle
-    (no translation is assumed)
+    homogeneous transformation matrix rotated around Y axis by phi angle
+    
+    Notes
+    -----
+        no translation is assumed
 
-    => Ref [2] page 28
-
-    Inputs
-    ------------
-    phi: float, angle of rotation
-    unit: string, unit of angle, "deg" or "rad"
+    Parameters
+    ----------
+    phi : int/float
+        angle of rotation
+    unit : string
+        unit of angle, "deg" or "rad", defaults to rad
 
     Returns
-    -----------
-    T: np.matrix (4x4), homogeneous rotation matrix
+    -------
+    T : np.matrix(4,4)
+        homogeneous transform matrix
+
+    Raises
+    ------
     """
 
     T = np.matrix(np.zeros((4,4)))

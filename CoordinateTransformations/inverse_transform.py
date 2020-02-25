@@ -2,18 +2,22 @@ import numpy as np
 
 def inverse_transform(T_AB):
     """
-    invert the transformation matrix
-    (calculate T_BA from T_AB)
+    inverse the trasform matrix
 
-    => Ref [2] page 35-36
+    i.e. given T_AB, returns T_BA 
 
-    Inputs
-    ---------
-    T_AB: np.matrix (4,4), transformation matrix
+    Parameters
+    ----------
+    T_AB : np.matrix(4,4)
+        homogeneous transform matrix
 
     Returns
-    ---------
-    T_BA: np.matrix (4,4), transformation matrix
+    -------
+    R_BA : np.matrix(4,4)
+        homogeneous transform matrix
+
+    Raises
+    ------
     """
 
     T_BA = np.matrix(np.zeros((4,4)))

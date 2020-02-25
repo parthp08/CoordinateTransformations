@@ -5,22 +5,32 @@ from .R_z import R_z
 
 def euler2rotation(alpha,phi,theta,unit="rad",order="xyz"):
     """
-    rotation matrix from euler angles
+    rotation matrix from given euler angles
 
-    => Ref [1] page 22-25
-
-    Inputs
-    --------
-    alpha: float, angle of rotation about order[0]
-    phi: float, angle of rotation about order[1]
-    theta: float, angle of rotation about order[2]
-    unit: string, unit of angle, "deg" or "rad"
-    order: string, order of rotation axis 
-            avialable orders: "xyz", "zyz", "zyx"
+    Parameters
+    ----------
+    alpha : int/float
+        angle of rotation about order[0]
+    phi : int/float
+        angle of rotation about order[1]
+    theta : int/float
+        angle of rotation about order[2]
+    unit : string
+        unit of angle, "deg" or "rad", default to rad
+    order : string
+        order of rotation axis, 
+        avialable orders: "xyz", "zyz", "zyx",
+        default to "xyz"
     
     Returns
-    --------
-    R: np.matrix (3,3), rotation matrix
+    -------
+    R : np.matrix(3,3)
+        rotation matrix
+
+    Raises
+    ------
+    AssertionError
+        if order is out of the avialable orders list
     """
 
     if order.lower() == "xyz":

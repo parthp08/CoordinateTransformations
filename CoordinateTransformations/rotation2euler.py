@@ -3,15 +3,25 @@ import numpy as np
 def rotation2euler(R, output_unit='rad'):
     """
     returns euler angles (alpha, beta and gamma) given a rotation matrix
-    
-    Inputs
-    -------
-    R: np.matrix (3,3), Rotation Matrix
-    output_unit: string, unit of the output angles, 'deg' or 'rad'
+
+    Parameters
+    ----------
+    R : np.matrix(3,3)
+        Rotation Matrix
+    output_unit : string
+        unit of the output angles, 'deg' or 'rad', default to rad
 
     Returns
-    --------
-    (alpha, beta, gamma): tuple of ints/floats, euler angles
+    -------
+    alpha : int/float
+        angle around axis
+    beta : int/float
+        angle around axis
+    gamma : int/float
+        angle around axis
+
+    Raises
+    ------
     """
 
     def output_deg(alpha,beta,gamma):

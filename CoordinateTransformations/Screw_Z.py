@@ -4,7 +4,24 @@ from .RP2T import RP2T
 
 def Screw_Z(distance, angle, unit='rad'):
     """
-    TODO
+    Screw motion around Z axis and with given distnace from the z-axis
+
+    Parameters
+    ----------
+    distnace : int/float
+        distance from the z-axis 
+    alpha : int/float
+        angle of rotation
+    unit : string
+        unit of angle, "deg" or "rad", defaults to rad
+
+    Returns
+    -------
+    T : np.matrix(4,4)
+        homogeneous rotation matrix
+
+    Raises
+    ------
     """
 
     R = R_z(angle, unit=unit)

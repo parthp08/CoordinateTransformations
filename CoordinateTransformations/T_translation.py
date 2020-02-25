@@ -2,18 +2,21 @@ import numpy as np
 
 def T_translation(translation_vec):
     """
-    Homogeneous translation matrix
-    (no rotation is assumed)
+    Homogeneous transform matrix for given translation
 
-    => Ref [2] page 28
+    Notes
+    -----
+        no rotation is assumed
 
-    Inputs
-    ------------
-    translation_vec: np.array (3x1), translation vector
+    Parameters
+    ----------
+    translation_vec : np.array(3,1)
+        translation vector
 
     Returns
     -----------
-    T: np.matrix (4x4), homogeneous translation matrix
+    T : np.matrix(4,4)
+        homogeneous translation matrix
     """
 
     T = np.mat(np.eye(4))

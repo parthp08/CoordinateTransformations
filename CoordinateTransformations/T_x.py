@@ -4,18 +4,25 @@ from .R_x import R_x
 def T_x(alpha, unit="rad"):
     """
     homogeneous transformation matrix rotated around X axis by alpha angle
-    (no translation is assumed)
+    
+    Notes
+    -----
+        no translation is assumed
 
-    => Ref [2] page 28
-
-    Inputs
-    ------------
-    alpha: float, angle of rotation
-    unit: string, unit of angle, "deg" or "rad"
+    Parameters
+    ----------
+    alpha : int/float
+        angle of rotation
+    unit : string
+        unit of angle, "deg" or "rad", defaults to rad
 
     Returns
-    -----------
-    T: np.matrix (4x4), homogeneous rotation matrix
+    -------
+    T : np.matrix(4,4)
+        homogeneous transform matrix
+
+    Raises
+    ------
     """
 
     T = np.matrix(np.zeros((4,4)))

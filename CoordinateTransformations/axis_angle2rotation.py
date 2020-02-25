@@ -2,19 +2,24 @@ import numpy as np
 
 def axis_angle2rotation(vector_, theta, unit='rad'):
     """
-    Equivalent angle-axis rotation
+    Equivalent angle-axis rotation of theta angle around a unit vector in arbitrary direction
 
-    => Ref [2] page 46
-
-    Inputs
-    ---------
-    vector_: np.array (3,1), general vector
-    theta: float, angle of rotation
-    unit: string, unit of angle, "deg" or "rad"
+    Parameters
+    ----------
+    vector_ : np.array(3,1)
+        unit vector
+    theta : int/float
+        angle of rotation
+    unit : string
+        unit of angle, "deg" or "rad", defaults to rad
 
     Returns
     --------
-    R: np.matrix (3,3), rotation matrix
+    R : np.matrix(3,3)
+        rotation matrix
+    
+    Raises
+    ------
     """
 
     if unit.lower() == "deg":

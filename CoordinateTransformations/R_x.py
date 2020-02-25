@@ -4,16 +4,20 @@ def R_x(alpha, unit="rad"):
     """
     Rotation about OX-axis with alpha-angle
 
-    => Ref [1] page 16
-
-    Inputs
-    ------------
-    alpha: float, angle of rotation
-    unit: string, unit of angle, "deg" or "rad"
+    Parameters
+    ----------
+    alpha : int/float
+        angle of rotation
+    unit : string
+        unit of angle, "deg" or "rad", defaults to rad
 
     Returns
-    -----------
-    R: np.matrix (3x3), rotation_matrix
+    -------
+    R : np.matrix(3,3)
+        rotation_matrix
+
+    Raises
+    ------
     """
 
     if unit.lower() == "deg":

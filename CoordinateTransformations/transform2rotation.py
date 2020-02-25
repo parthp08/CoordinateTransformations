@@ -2,11 +2,21 @@ import numpy as np
 
 def transform2rotation(T):
     """
-    gives rotation matrix from T
+    convert transform matrix into rotation matrix
 
-    TODO
+    Parameters
+    ----------
+    T : np.matrix(4,4)
+        homogeneous transform matrix
+
+    Returns
+    -------
+    R : np.matrix(3,3)
+        rotation matrix
+
+    Raises
+    ------
     """
 
     R = T[:3,:3]
     return R
-    

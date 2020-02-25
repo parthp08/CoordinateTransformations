@@ -2,18 +2,22 @@ import numpy as np
 
 def R_z(theta, unit="rad"):
     """
-    Rotation about OZ-axis with alpha-angle
+    Rotation about OZ-axis with theta-angle
 
-    => Ref [1] page 18
-
-    Inputs
-    ------------
-    theta: float, angle of rotation
-    unit: string, unit of angle, "deg" or "rad"
+    Parameters
+    ----------
+    theta : int/float
+        angle of rotation
+    unit : string
+        unit of angle, "deg" or "rad", defaults to rad
 
     Returns
-    -----------
-    R: np.matrix (3x3), rotation_matrix
+    -------
+    R : np.matrix(3,3)
+        rotation_matrix
+
+    Raises
+    ------
     """
 
     if unit.lower() == "deg":

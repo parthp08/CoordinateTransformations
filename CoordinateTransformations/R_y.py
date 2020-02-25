@@ -2,18 +2,22 @@ import numpy as np
 
 def R_y(phi, unit="rad"):
     """
-    Rotation about OY-axis with alpha-angle
+    Rotation about OY-axis with phi-angle
 
-    => Ref [1] page 18
-
-    Inputs
-    ------------
-    phi: float, angle of rotation
-    unit: string, unit of angle, "deg" or "rad"
+    Parameters
+    ----------
+    phi : int/float
+        angle of rotation
+    unit : string
+        unit of angle, "deg" or "rad", defaults to rad
 
     Returns
-    -----------
-    R: np.matrix (3x3), rotation_matrix
+    -------
+    R : np.matrix(3,3)
+        rotation_matrix
+
+    Raises
+    ------
     """
 
     if unit.lower() == "deg":

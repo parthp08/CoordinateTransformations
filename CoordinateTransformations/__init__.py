@@ -1,4 +1,4 @@
-# functions to work with spatial descriptions and transformations
+# functions to work with spatial descriptions and transformations for robotics analysis
 
 # Rotation Matrix base functions
 from .R_x import R_x

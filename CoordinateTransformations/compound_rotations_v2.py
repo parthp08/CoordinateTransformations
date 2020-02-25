@@ -3,10 +3,23 @@ from .compound_rotations import compound_rotations
 
 def compound_rotations_v2(R_arr):
     """
+    perform multiplication of rotations (even more than 2)
 
-    Compound multiple rotations (even > 2)
+    - just like adding two or more rotations
+    - i.e. compute R_AC from the knowledge of R_AB and R_BC
 
-    TODO
+    Parameters
+    ----------
+    R_arr : np.array
+        array of rotation matrices of same shape
+
+    Returns
+    -------
+    R : np.matrix(3,3)
+        rotation matrix
+
+    Raises
+    ------
     """
     
     for i in range(1, len(R_arr)):

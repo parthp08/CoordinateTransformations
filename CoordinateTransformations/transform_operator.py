@@ -6,14 +6,20 @@ def transform_operator(T, point):
     transform matrix as an operator which will perform tranlation and rotation to
     a point or a vector
 
-    Inputs
-    ---------
-    T: np.matrix (4x4), tranformation matrix
-    point: np.array (3x1), point in 3D space
+    Parameters
+    ----------
+    T : np.matrix(4,4)
+        tranform matrix
+    point : np.array(3,1)
+        point in 3D space
 
     Returns
-    ----------
-    P: np.array (3x1), point rotated and translated by the transformation matrix
+    -------
+    P : np.array(3,1)
+        new point location rotated and translated by the transform matrix
+
+    Raises
+    ------
     """
 
     # Rotation matrix

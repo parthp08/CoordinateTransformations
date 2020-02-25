@@ -21,6 +21,8 @@ project = 'CoordinateTransformations'
 copyright = '2020, Parth Viradiya'
 author = 'Parth Viradiya'
 
+#-------------------
+master_doc = 'index'
 
 # -- General configuration ---------------------------------------------------
 

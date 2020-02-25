@@ -6,6 +6,11 @@ Toolbox for Coordinate Transformations for Robotics Analysis.
 Run the following to install:
 
 ```python
+pip install CoordinateTransformations
+```
+
+for installing directly from this repo
+```python
 pip install git+https://github.com/parthp08/CoordinateTransformations
 ```
 

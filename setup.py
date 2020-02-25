@@ -6,10 +6,10 @@ def readme():
     
 setup(
     name='CoordinateTransformations',
-    version='0.1',
+    version='0.1.8',
     packages=['CoordinateTransformations'],
     long_description=readme(),
-    long_description_content_type='md',
+    long_description_content_type='text/markdown',
     url='',
     author='Parth Viradiya',
     author_email='parthviradiya08@gmail.com',

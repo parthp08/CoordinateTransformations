@@ -7,7 +7,7 @@ def rotation_operator(R, point):
 
     Parameters
     ----------
-    R : np.matrix(3,3)
+    R : np.array(3,3)
         rotation matrix
     point : np.array(3,1)
         point in 3D space
@@ -21,6 +21,6 @@ def rotation_operator(R, point):
     ------
     """
 
-    point_2 = R * point
+    point_2 = np.matmul(R,point)
     return point_2
 

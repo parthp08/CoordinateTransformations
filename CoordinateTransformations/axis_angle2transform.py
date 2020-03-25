@@ -23,7 +23,7 @@ def axis_angle2transform(vector_, theta, unit='rad', pass_through_origin=True, p
 
     Returns
     --------
-    T : np.matrix(4,4)
+    T : np.array(4,4)
         homogeneous transformation matrix
     
     Raises

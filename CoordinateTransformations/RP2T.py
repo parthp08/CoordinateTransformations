@@ -6,23 +6,23 @@ def RP2T(R, P):
 
     Parameters
     ----------
-    R : np.matrix(3,3)
+    R : np.array(3,3)
         rotation matrix
     P : np.array(3,1)
         translation vector
 
     Returns
     -------
-    T : np.matrix(4,4)
+    T : np.array(4,4)
         homogeneous transform matrix
 
     Raises
     ------
     """
 
-    T = np.matrix(np.zeros((4,4)))
+    T = np.zeros((4,4))
     T[3,3] = 1
     T[:3,:3] = R
-    T[:3,3] = P
+    T[:3,3] = P.reshape(3,)
     return T
     

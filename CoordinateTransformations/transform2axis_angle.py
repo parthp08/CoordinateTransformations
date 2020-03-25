@@ -11,7 +11,7 @@ def transform2axis_angle(T, output_unit="rad"):
 
     Parameters
     ----------
-    T : np.matrix(4,4)
+    T : np.array(4,4)
         rotation matrix
     output_unit : string
         unit of angle, "deg" or "rad", defaults to rad

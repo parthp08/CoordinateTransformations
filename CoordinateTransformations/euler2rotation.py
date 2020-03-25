@@ -2,6 +2,7 @@ import numpy as np
 from .R_x import R_x
 from .R_y import R_y
 from .R_z import R_z
+from .compound_rotations_v2 import compound_rotations_v2
 
 def euler2rotation(alpha,phi,theta,unit="rad",order="xyz"):
     """
@@ -24,7 +25,7 @@ def euler2rotation(alpha,phi,theta,unit="rad",order="xyz"):
     
     Returns
     -------
-    R : np.matrix(3,3)
+    R : np.array(3,3)
         rotation matrix
 
     Raises
@@ -34,11 +35,11 @@ def euler2rotation(alpha,phi,theta,unit="rad",order="xyz"):
     """
 
     if order.lower() == "xyz":
-        R = R_x(alpha,unit=unit)*R_y(phi,unit=unit)*R_z(theta,unit=unit)
+        R = compound_rotations_v2([R_x(alpha,unit=unit),R_y(phi,unit=unit),R_z(theta,unit=unit)])
     elif order.lower() == "zyz":
-        R = R_z(alpha,unit=unit)*R_y(phi,unit=unit)*R_z(theta,unit=unit)
+        R = compound_rotations_v2([R_z(alpha,unit=unit),R_y(phi,unit=unit),R_z(theta,unit=unit)])
     elif order.lower() == "zyx":
-        R = R_z(alpha,unit=unit)*R_y(phi,unit=unit)*R_x(theta,unit=unit)
+        R = compound_rotations_v2([R_z(alpha,unit=unit),R_y(phi,unit=unit),R_x(theta,unit=unit)])
     else:
         AssertionError("euler angle order not implemented, avialable orders: xyz, zyz, zyx")
     

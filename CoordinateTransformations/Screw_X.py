@@ -17,7 +17,7 @@ def Screw_X(distance, angle, unit='rad'):
 
     Returns
     -------
-    T : np.matrix(4,4)
+    T : np.array(4,4)
         homogeneous rotation matrix
 
     Raises

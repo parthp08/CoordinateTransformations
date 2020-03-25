@@ -8,12 +8,12 @@ def inverse_rotation(R_AB):
 
     Parameters
     ----------
-    R_AB : np.matrix(3,3)
+    R_AB : np.array(3,3)
         rotation matrix
 
     Returns
     -------
-    R_BA : np.matrix(3,3)
+    R_BA : np.array(3,3)
         rotation matrix
 
     Raises

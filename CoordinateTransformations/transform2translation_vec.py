@@ -6,7 +6,7 @@ def transform2translation_vec(T):
 
     Parameters
     ----------
-    T : np.matrix(4,4)
+    T : np.array(4,4)
         homogeneous transform matrix
 
     Returns
@@ -18,5 +18,5 @@ def transform2translation_vec(T):
     ------
     """
 
-    vector_ = T[:3,3] 
+    vector_ = T[:3,3].reshape(3,1)
     return vector_

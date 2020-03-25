@@ -9,21 +9,21 @@ def compound_rotations(R_AB, R_BC):
 
     Parameters
     ----------
-    R_AB : np.matrix(3,3)
+    R_AB : np.array(3,3)
         rotation matrix
-    R_BC : np.matrix(3,3)
+    R_BC : np.array(3,3)
         rotation matrix
 
     Returns
     -------
-    R_AC : np.matrix(3,3)
+    R_AC : np.array(3,3)
         rotation matrix
 
     Raises
     ------
     """
 
-    R_AC = R_AB * R_BC
+    R_AC = np.matmul(R_AB,R_BC)
     
     return R_AC
     

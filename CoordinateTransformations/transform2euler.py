@@ -7,7 +7,7 @@ def transform2euler(T, output_unit='rad'):
 
     Parameters
     ----------
-    T : np.matrix(4,4)
+    T : np.array(4,4)
         transform matrix
     output_unit : string
         unit of the output angles, 'deg' or 'rad', default to rad

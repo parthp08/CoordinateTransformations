@@ -6,12 +6,12 @@ def T2RP(T):
 
     Parameters
     ----------
-    T : np.matrix(4,4)
+    T : np.array(4,4)
         homogeneous transform matrix
 
     Returns
     -------
-    R : np.matrix(3,3)
+    R : np.array(3,3)
         rotation matrix
     P : np.array(3,1)
         translation vector
@@ -20,5 +20,5 @@ def T2RP(T):
     ------
     """
     R = T[:3,:3]
-    P = T[:3,3]
+    P = T[:3,3].reshape(3,1)
     return R,P

@@ -18,14 +18,14 @@ def T_z(theta, unit="rad"):
 
     Returns
     -------
-    T : np.matrix(4,4)
+    T : np.array(4,4)
         homogeneous transform matrix
 
     Raises
     ------
     """
 
-    T = np.matrix(np.zeros((4,4)))
+    T = np.zeros((4,4))
     T[3,3] = 1
     T [0:3, 0:3] = R_z(theta, unit=unit)
     return T

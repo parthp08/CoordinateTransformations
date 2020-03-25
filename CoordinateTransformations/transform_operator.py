@@ -8,7 +8,7 @@ def transform_operator(T, point):
 
     Parameters
     ----------
-    T : np.matrix(4,4)
+    T : np.array(4,4)
         tranform matrix
     point : np.array(3,1)
         point in 3D space
@@ -26,8 +26,8 @@ def transform_operator(T, point):
     R = T[:3,:3]
 
     # Translation vector
-    TR = T[:3,3]
+    TR = T[:3,3].reshape(3,1)
 
     # new point # apply rotation and then translation
-    P = pure_translation(R*point, TR)
+    P = pure_translation(np.matmul(R,point), TR)
     return P

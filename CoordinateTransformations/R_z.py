@@ -13,7 +13,7 @@ def R_z(theta, unit="rad"):
 
     Returns
     -------
-    R : np.matrix(3,3)
+    R : np.array(3,3)
         rotation_matrix
 
     Raises
@@ -25,7 +25,7 @@ def R_z(theta, unit="rad"):
     
     s_theta = np.sin(theta)
     c_theta = np.cos(theta)
-    R = np.matrix([
+    R = np.array([
         [c_theta,-s_theta,0],
         [s_theta,c_theta,0],
         [0,0,1]

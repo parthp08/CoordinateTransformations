@@ -15,7 +15,7 @@ def compound_rotations_v2(R_arr):
 
     Returns
     -------
-    R : np.matrix(3,3)
+    R : np.array(3,3)
         rotation matrix
 
     Raises

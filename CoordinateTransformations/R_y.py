@@ -13,7 +13,7 @@ def R_y(phi, unit="rad"):
 
     Returns
     -------
-    R : np.matrix(3,3)
+    R : np.array(3,3)
         rotation_matrix
 
     Raises
@@ -25,7 +25,7 @@ def R_y(phi, unit="rad"):
     
     s_phi = np.sin(phi)
     c_phi = np.cos(phi)
-    R = np.matrix([
+    R = np.array([
         [c_phi,0,s_phi],
         [0,1,0],
         [-s_phi,0,c_phi]

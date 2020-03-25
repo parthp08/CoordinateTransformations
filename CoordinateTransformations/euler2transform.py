@@ -23,8 +23,8 @@ def euler2transform(alpha,phi,theta,unit="rad",order="xyz"):
     
     Returns
     -------
-    T : np.matrix(4,4)
-        rotation matrix
+    T : np.array(4,4)
+        transform matrix
 
     Raises
     ------

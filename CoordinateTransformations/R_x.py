@@ -13,7 +13,7 @@ def R_x(alpha, unit="rad"):
 
     Returns
     -------
-    R : np.matrix(3,3)
+    R : np.array(3,3)
         rotation_matrix
 
     Raises
@@ -25,7 +25,7 @@ def R_x(alpha, unit="rad"):
     
     s_alpha = np.sin(alpha)
     c_alpha = np.cos(alpha)
-    R = np.matrix([
+    R = np.array([
         [1,0,0],
         [0,c_alpha,-s_alpha],
         [0,s_alpha,c_alpha]

@@ -15,7 +15,7 @@ def compound_transforms_v2(T_arr):
 
     Returns
     -------
-    T : np.matrix(4,4)
+    T : np.array(4,4)
         homogeneous transform matrix
 
     Raises

@@ -15,7 +15,7 @@ def axis_angle2rotation(vector_, theta, unit='rad'):
 
     Returns
     --------
-    R : np.matrix(3,3)
+    R : np.array(3,3)
         rotation matrix
     
     Raises
@@ -34,7 +34,7 @@ def axis_angle2rotation(vector_, theta, unit='rad'):
 
     kx,ky,kz = K[0,0], K[1,0], K[2,0]
 
-    R = np.matrix([
+    R = np.array([
         [(kx**2)*v_theta + c_theta, kx*ky*v_theta - kz*s_theta, kx*kz*v_theta + ky*s_theta],
         [kx*ky*v_theta + kz*s_theta, (ky**2)*v_theta + c_theta, ky*kz*v_theta - kx*s_theta],
         [kx*kz*v_theta - ky*s_theta, ky*kz*v_theta + kx*s_theta, (kz**2)*v_theta + c_theta]

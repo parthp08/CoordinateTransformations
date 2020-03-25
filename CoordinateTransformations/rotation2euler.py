@@ -6,7 +6,7 @@ def rotation2euler(R, output_unit='rad'):
 
     Parameters
     ----------
-    R : np.matrix(3,3)
+    R : np.array(3,3)
         Rotation Matrix
     output_unit : string
         unit of the output angles, 'deg' or 'rad', default to rad

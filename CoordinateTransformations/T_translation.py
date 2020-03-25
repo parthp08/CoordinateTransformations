@@ -15,10 +15,10 @@ def T_translation(translation_vec):
 
     Returns
     -----------
-    T : np.matrix(4,4)
+    T : np.array(4,4)
         homogeneous translation matrix
     """
 
-    T = np.mat(np.eye(4))
-    T[0:3,3] += translation_vec
+    T = np.eye(4)
+    T[0:3,3] += translation_vec.reshape(3,)
     return T

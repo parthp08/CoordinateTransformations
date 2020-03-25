@@ -6,12 +6,12 @@ def transform2rotation(T):
 
     Parameters
     ----------
-    T : np.matrix(4,4)
+    T : np.array(4,4)
         homogeneous transform matrix
 
     Returns
     -------
-    R : np.matrix(3,3)
+    R : np.array(3,3)
         rotation matrix
 
     Raises

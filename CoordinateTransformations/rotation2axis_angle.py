@@ -10,7 +10,7 @@ def rotation2axis_angle(R, output_unit="rad"):
 
     Parameters
     ----------
-    R : np.matrix(3,3)
+    R : np.array(3,3)
         rotation matrix
     output_unit : string
         unit of angle, "deg" or "rad", defaults to rad

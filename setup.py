@@ -6,7 +6,7 @@ def readme():
     
 setup(
     name='CoordinateTransformations',
-    version='0.8.9',
+    version='0.9.0',
     packages=['CoordinateTransformations'],
     long_description=readme(),
     long_description_content_type='text/markdown',

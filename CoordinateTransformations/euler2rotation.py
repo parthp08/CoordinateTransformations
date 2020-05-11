@@ -2,7 +2,6 @@ import numpy as np
 from .R_x import R_x
 from .R_y import R_y
 from .R_z import R_z
-from .compound_rotations_v2 import compound_rotations_v2
 
 def euler2rotation(alpha,phi,theta,unit="rad",order="xyz"):
     """
@@ -20,7 +19,7 @@ def euler2rotation(alpha,phi,theta,unit="rad",order="xyz"):
         unit of angle, "deg" or "rad", default to rad
     order : string
         order of rotation axis, 
-        avialable orders: "xyz", "zyz", "zyx",
+        choose order : "ijk" where i=x/y/z, j=x/y/z, k=x/y/z
         default to "xyz"
     
     Returns
@@ -30,17 +29,21 @@ def euler2rotation(alpha,phi,theta,unit="rad",order="xyz"):
 
     Raises
     ------
-    AssertionError
-        if order is out of the avialable orders list
     """
 
-    if order.lower() == "xyz":
-        R = compound_rotations_v2([R_x(alpha,unit=unit),R_y(phi,unit=unit),R_z(theta,unit=unit)])
-    elif order.lower() == "zyz":
-        R = compound_rotations_v2([R_z(alpha,unit=unit),R_y(phi,unit=unit),R_z(theta,unit=unit)])
-    elif order.lower() == "zyx":
-        R = compound_rotations_v2([R_z(alpha,unit=unit),R_y(phi,unit=unit),R_x(theta,unit=unit)])
-    else:
-        AssertionError("euler angle order not implemented, avialable orders: xyz, zyz, zyx")
+    assert order[0]!=order[1] and order[1]!=order[2], "order choice is constrained to not have two succesive rotation with same axis such as xxy or xzz" 
+
+    angle_list = [alpha, phi, theta]
+    R = np.eye(3)
+    i = 0
+    for axis in order:
+        if axis == 'x':
+            R = np.matmul(R, R_x(angle_list[i],unit=unit))
+        elif axis == 'y':
+            R = np.matmul(R, R_y(angle_list[i],unit=unit))
+        elif axis == 'z':
+            R = np.matmul(R, R_z(angle_list[i],unit=unit))
+        
+        i += 1
     
     return R

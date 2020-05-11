@@ -28,8 +28,6 @@ def euler2transform(alpha,phi,theta,unit="rad",order="xyz"):
 
     Raises
     ------
-    AssertionError
-        if order is out of the avialable orders list
     """
 
     R = euler2rotation(alpha,phi,theta,unit=unit,order=order)

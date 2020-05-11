@@ -18,7 +18,7 @@ def euler2transform(alpha,phi,theta,unit="rad",order="xyz"):
         unit of angle, "deg" or "rad", default to rad
     order : string
         order of rotation axis, 
-        avialable orders: "xyz", "zyz", "zyx",
+        choose order : "ijk" where i=x/y/z, j=x/y/z, k=x/y/z
         default to "xyz"
     
     Returns

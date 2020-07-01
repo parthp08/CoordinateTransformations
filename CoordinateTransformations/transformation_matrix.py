@@ -11,9 +11,9 @@ class TransformationMatrix(object):
 
     def _add_translation(self, P):
         self._T[:3, 3] = np.matmul(
-            self._T[:3, 3], P).reshape(3,) + self._T[:3, 3]
+            self._T[:3, 3], P.reshape(3,)) + self._T[:3, 3]
 
-    def _add_transformation(seslf, T):
+    def _add_transformation(self, T):
         self._add_rotation(T[:3, :3])
         self._add_translation(T[:3, 3].reshape(3, 1))
 
@@ -58,9 +58,9 @@ class TransformationMatrix(object):
         ]))
 
     def fixed_rotation(self, angle_x, angle_y, angle_z, unit='rad'):
-        self._add_rotation((self.__mul__(self.rotz(angle_z, unit=unit),
-                                         self.roty(angle_y, unit=unit),
-                                         self.rotx(angle_x, unit=unit))))
+        self.rotz(angle_z, unit=unit)
+        self.roty(angle_y, unit=unit)
+        self.rotx(angle_x, unit=unit)
 
     def euler_rotation(self, alpha, beta, gamma, unit='rad', order='zyx'):
         assert order[0] != order[1] and order[1] != order[2], \
@@ -106,7 +106,7 @@ class TransformationMatrix(object):
         return self._T[:3, 3].reshape(3, 1)
 
     def set_T(self, T):
-        if T.shape = (4, 4):
+        if T.shape == (4, 4):
             self._T = T
         else:
             pass
@@ -118,15 +118,15 @@ class TransformationMatrix(object):
             pass
 
     def set_P(self, P):
-        if P.shape = (3, 1):
-            self._T[:3, 3] = P
+        if P.shape == (3, 1):
+            self._T[:3, 3] = P.reshape(3,)
         else:
             pass
 
     def __mul__(self, *transformations):
         for transformation in transformations:
             if self._is_transformation_matrix(transformation):
-                self._add_transformation(transformation)
+                self._add_transformation(transformation.get_T())
         return self
 
     def inverse(self):

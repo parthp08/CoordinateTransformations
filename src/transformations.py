@@ -7,6 +7,12 @@ class TransformationMatrix(object):
         self._T = np.eye(4)
         self._R = self._T[:3, :3]
 
+    def __mul__(self, *transformations):
+        for transformation in transformations:
+            if self._is_transformation_matrix(transformation):
+                self._add_transformation(transformation.get_T())
+        return self
+
     def _add_rotation(self, R):
         self._T[:3, :3] = np.matmul(self._T[:3, :3], R)
 
@@ -18,9 +24,36 @@ class TransformationMatrix(object):
         self._add_rotation(T[:3, :3])
         self._add_translation(T[:3, 3].reshape(3, 1))
 
-    @staticmethod
-    def _is_transformation_matrix(T):
-        return type(T) == TransformationMatrix
+    def get_T(self):
+        return self._T
+
+    def get_R(self):
+        return self._R
+
+    def get_P(self):
+        return self._T[:3, 3].reshape(3, 1)
+
+    def set_T(self, T):
+        if T.shape == (4, 4):
+            self._T = T
+        else:
+            raise "transformation matrix must be of size (4,4)"
+
+    def set_R(self, R):
+        if R.shape == (3, 3):
+            self._T[:3, :3] = R
+        else:
+            raise "rotation matrix must be of size (3,3)"
+
+    def set_P(self, P):
+        if P.shape == (3, 1):
+            self._T[:3, 3] = P.reshape(3,)
+        else:
+            raise "position vector must be of size (3,1)"
+
+    def inverse(self):
+        self._T[:3, :3] = self._T[:3, :3].T
+        self._T[:3, 3] = -np.matmul(self._T[:3, :3], self._T[:3, 3])
 
     def rotx(self, angle, unit='rad'):
         if unit.lower() == 'deg':
@@ -57,6 +90,24 @@ class TransformationMatrix(object):
             [s_angle, c_angle, 0],
             [0, 0, 1]
         ]))
+
+    def translate(self, vector):
+        self._T[:3, 3] += vector.reshape(3,)
+
+    def operate_on_point(self, point):
+        return np.matmul(self._T[:3, :3], point) + self._T[:3, 3].reshape(3, 1)
+
+    def screw_x(self, distance, angle, unit='rad'):
+        self.rotx(angle, unit=unit)
+        self._T[:3, 3] = np.array([distance, 0, 0])
+
+    def screw_y(self, distance, angle, unit='rad'):
+        self.roty(angle, unit=unit)
+        self._T[:3, 3] = np.array([0, distance, 0])
+
+    def screw_z(self, distance, angle, unit='rad'):
+        self.rotz(angle, unit=unit)
+        self._T[:3, 3] = np.array([0, 0, distance])
 
     def fixed_rotation(self, angle_x, angle_y, angle_z, unit='rad'):
         self.rotz(angle_z, unit=unit)
@@ -96,48 +147,6 @@ class TransformationMatrix(object):
             [kx*kz*v_theta - ky*s_theta, ky*kz*v_theta +
              kx*s_theta, (kz**2)*v_theta + c_theta]
         ]))
-
-    def get_T(self):
-        return self._T
-
-    def get_R(self):
-        return self._R
-
-    def get_P(self):
-        return self._T[:3, 3].reshape(3, 1)
-
-    def set_T(self, T):
-        if T.shape == (4, 4):
-            self._T = T
-        else:
-            pass
-
-    def set_R(self, R):
-        if R.shape == (3, 3):
-            self._T[:3, :3] = R
-        else:
-            pass
-
-    def set_P(self, P):
-        if P.shape == (3, 1):
-            self._T[:3, 3] = P.reshape(3,)
-        else:
-            pass
-
-    def __mul__(self, *transformations):
-        for transformation in transformations:
-            if self._is_transformation_matrix(transformation):
-                self._add_transformation(transformation.get_T())
-        return self
-
-    def inverse(self):
-        self._T[:3, :3] = self._T[:3, :3].T
-        self._T[:3, 3] = -np.matmul(self._T[:3, :3], self._T[:3, 3])
-
-    @staticmethod
-    def _output_deg(alpha, beta, gamma):
-        """ convert rad to deg """
-        return (np.rad2deg(alpha), np.rad2deg(beta), np.rad2deg(gamma))
 
     def to_euler_angles(self, output_unit='rad'):
         """
@@ -184,23 +193,14 @@ class TransformationMatrix(object):
             return K_hat, np.rad2deg(theta)
         return K_hat, theta
 
-    def operate_on_point(self, point):
-        return np.matmul(self._T[:3, :3], point) + self._T[:3, 3].reshape(3, 1)
+    @staticmethod
+    def _is_transformation_matrix(T):
+        return type(T) == TransformationMatrix
 
-    def translate(self, vector):
-        self._T[:3, 3] += vector.reshape(3,)
-
-    def screw_x(self, distance, angle, unit='rad'):
-        self.rotx(angle, unit=unit)
-        self._T[:3, 3] = np.array([distance, 0, 0])
-
-    def screw_y(self, distance, angle, unit='rad'):
-        self.roty(angle, unit=unit)
-        self._T[:3, 3] = np.array([0, distance, 0])
-
-    def screw_y(self, distance, angle, unit='rad'):
-        self.rotz(angle, unit=unit)
-        self._T[:3, 3] = np.array([0, 0, distance])
+    @staticmethod
+    def _output_deg(alpha, beta, gamma):
+        """ convert rad to deg """
+        return (np.rad2deg(alpha), np.rad2deg(beta), np.rad2deg(gamma))
 
 
 class RotationMatrix(TransformationMatrix, object):
@@ -209,9 +209,11 @@ class RotationMatrix(TransformationMatrix, object):
         super().__init__
         self._R = np.eye(3)
 
-    @staticmethod
-    def _is_rotation_matrix(R):
-        return type(R) == RotationMatrix
+    def __mul__(self, *rotations):
+        for rotation in rotations:
+            if self._is_rotation_matrix(rotation):
+                self._add_rotation(rotation.get_R())
+        return self
 
     def _add_rotation(self, R):
         # update self.R
@@ -223,12 +225,6 @@ class RotationMatrix(TransformationMatrix, object):
         else:
             raise "rotation matrix must be of shape (3,3) or RotationMatrix type"
 
-    def __mul__(self, *rotations):
-        for rotation in rotations:
-            if self._is_rotation_matrix(rotation):
-                self._add_rotation(rotation.get_R())
-        return self
-
     def inverse(self):
         self._R = self._R.T
 
@@ -239,3 +235,7 @@ class RotationMatrix(TransformationMatrix, object):
         T = np.eye(4)
         T[:3, :3] = self._R
         return T
+    
+    @staticmethod
+    def _is_rotation_matrix(R):
+        return type(R) == RotationMatrix

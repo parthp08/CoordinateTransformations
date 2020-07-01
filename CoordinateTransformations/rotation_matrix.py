@@ -18,8 +18,7 @@ class RotationMatrix:
         if unit.lower() == 'deg':
             angle = np.deg2rad(angle)
 
-        s_angle = np.sin(angle)
-        c_angle = np.cos(angle)
+        s_angle, c_angle = np.sin(angle), np.cos(angle)
 
         self._add_rotation(np.array([
             [1, 0, 0],
@@ -31,8 +30,7 @@ class RotationMatrix:
         if unit.lower() == 'deg':
             angle = np.deg2rad(angle)
 
-        s_angle = np.sin(angle)
-        c_angle = np.cos(angle)
+        s_angle, c_angle = np.sin(angle), np.cos(angle)
 
         self._add_rotation(np.array([
             [c_angle, 0, s_angle],
@@ -44,8 +42,7 @@ class RotationMatrix:
         if unit.lower() == 'deg':
             angle = np.deg2rad(angle)
 
-        s_angle = np.sin(angle)
-        c_angle = np.cos(angle)
+        s_angle, c_angle = np.sin(angle), np.cos(angle)
 
         self._add_rotation(np.array([
             [c_angle, -s_angle, 0],
@@ -78,14 +75,10 @@ class RotationMatrix:
         if unit.lower() == "deg":
             theta = np.deg2rad(theta)
 
-        # forming unit vector
         K = vector / np.linalg.norm(vector)
-
-        c_theta = np.cos(theta)
-        s_theta = np.sin(theta)
-        v_theta = 1 - c_theta
-
         kx, ky, kz = K[0, 0], K[1, 0], K[2, 0]
+        s_theta, c_theta = np.sin(theta), np.cos(theta)
+        v_theta = 1 - c_theta
 
         self._add_rotation(np.array([
             [(kx**2)*v_theta + c_theta, kx*ky*v_theta -

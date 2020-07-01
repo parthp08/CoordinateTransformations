@@ -1,18 +1,25 @@
 import numpy as np
 
 
-class RotationMatrix(object):
+class TransformationMatrix(object):
 
     def __init__(self):
-        self._R = np.eye(3)
-
-    @staticmethod
-    def _is_rotation_matrix(R):
-        return type(R) == RotationMatrix
+        self._T = np.eye(4)
 
     def _add_rotation(self, R):
-        # update self.R
-        self._R = np.matmul(self._R, R)
+        self._T[:3, :3] = np.matmul(self._T[:3, :3], R)
+
+    def _add_translation(self, P):
+        self._T[:3, 3] = np.matmul(
+            self._T[:3, 3], P).reshape(3,) + self._T[:3, 3]
+
+    def _add_transformation(seslf, T):
+        self._add_rotation(T[:3, :3])
+        self._add_translation(T[:3, 3].reshape(3, 1))
+
+    @staticmethod
+    def _is_transformation_matrix(T):
+        return type(T) == TransformationMatrix
 
     def rotx(self, angle, unit='rad'):
         if unit.lower() == 'deg':
@@ -89,31 +96,42 @@ class RotationMatrix(object):
              kx*s_theta, (kz**2)*v_theta + c_theta]
         ]))
 
+    def get_T(self):
+        return self._T
+
     def get_R(self):
-        return self._R
+        return self._T[:3, :3]
+
+    def get_P(self):
+        return self._T[:3, 3].reshape(3, 1)
+
+    def set_T(self, T):
+        if T.shape = (4, 4):
+            self._T = T
+        else:
+            pass
 
     def set_R(self, R):
-        if self._is_rotation_matrix(R) or R.shape == (3, 3):
-            self._R = R
+        if R.shape == (3, 3):
+            self._T[:3, :3] = R
         else:
-            raise "rotation matrix must be of shape (3,3) or RotationMatrix type"
+            pass
 
-    def __mul__(self, *rotations):
-        for rotation in rotations:
-            if self._is_rotation_matrix(rotation):
-                self._add_rotation(rotation.get_R())
+    def set_P(self, P):
+        if P.shape = (3, 1):
+            self._T[:3, 3] = P
+        else:
+            pass
+
+    def __mul__(self, *transformations):
+        for transformation in transformations:
+            if self._is_transformation_matrix(transformation):
+                self._add_transformation(transformation)
         return self
 
     def inverse(self):
-        self._R = self._R.T
-
-    def operate_on_point(self, point):
-        return np.matmul(self._R, point)
-
-    def to_transformation_matrix(self):
-        T = np.eye(4)
-        T[:3, :3] = self._R
-        return T
+        self._T[:3, :3] = self._T[:3, :3].T
+        self._T[:3, 3] = -np.matmul(self._T[:3, :3], self._T[:3, 3])
 
     @staticmethod
     def _output_deg(alpha, beta, gamma):
@@ -124,11 +142,11 @@ class RotationMatrix(object):
         """
         euler angle order : Z-Y-X
         """
-        beta = np.arctan2(-self._R[2, 0],
-                          np.sqrt(self._R[0, 0]**2 + self._R[1, 0]**2))
+        beta = np.arctan2(-self._T[2, 0],
+                          np.sqrt(self._T[0, 0]**2 + self._T[1, 0]**2))
         if beta == np.deg2rad(90):
             alpha = 0
-            gamma = np.arctan2(self._R[0, 1], self._R[1, 1])
+            gamma = np.arctan2(self._T[0, 1], self._T[1, 1])
 
             if output_unit == 'deg':
                 return self._output_deg(alpha, beta, gamma)
@@ -136,15 +154,15 @@ class RotationMatrix(object):
 
         elif beta == np.deg2rad(-90):
             alpha = 0
-            gamma = -np.arctan2(self._R[0, 1], self._R[1, 1])
+            gamma = -np.arctan2(self._T[0, 1], self._T[1, 1])
 
             if output_unit == 'deg':
                 return self._output_deg(alpha, beta, gamma)
             return (alpha, beta, gamma)
 
         c_beta = np.cos(beta)
-        alpha = np.arctan2(self._R[1, 0]/c_beta, self._R[0, 0]/c_beta)
-        gamma = np.arctan2(self._R[2, 1]/c_beta, self._R[2, 2]/c_beta)
+        alpha = np.arctan2(self._T[1, 0]/c_beta, self._T[0, 0]/c_beta)
+        gamma = np.arctan2(self._T[2, 1]/c_beta, self._T[2, 2]/c_beta)
 
         if output_unit == 'deg':
             return self._output_deg(alpha, beta, gamma)
@@ -152,15 +170,27 @@ class RotationMatrix(object):
 
     def to_axis_angle(self, output_unit='rad'):
         # always calculate the angle between 0 to 180
-        theta = np.arccos((self._R[0, 0]+self._R[1, 1]+self._R[2, 2]-1)/2)
+        theta = np.arccos((self._T[0, 0]+self._T[1, 1]+self._T[2, 2]-1)/2)
 
         # doesnt work for theta = 0 or 180 degrees
         K_hat = (1/(2*np.sin(theta))) * np.array([
-            [self._R[2, 1] - self._R[1, 2]],
-            [self._R[0, 2] - self._R[2, 0]],
-            [self._R[1, 0] - self._R[0, 1]]
+            [self._T[2, 1] - self._T[1, 2]],
+            [self._T[0, 2] - self._T[2, 0]],
+            [self._T[1, 0] - self._T[0, 1]]
         ])
 
         if output_unit.lower() == "deg":
             return K_hat, np.rad2deg(theta)
         return K_hat, theta
+
+    def operate_on_point(self, point):
+        return np.matmul(self._T[:3, :3], point) + self._T[:3, 3].reshape(3, 1)
+
+    def translate(self, vector):
+        self._T[:3, 3] += vector.reshape(3,)
+
+    def screw_x(self):
+        pass
+
+    def screw_z(self):
+        pass

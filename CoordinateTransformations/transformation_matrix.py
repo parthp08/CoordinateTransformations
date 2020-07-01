@@ -5,6 +5,7 @@ class TransformationMatrix(object):
 
     def __init__(self):
         self._T = np.eye(4)
+        self._R = self.T[:3, :3]
 
     def _add_rotation(self, R):
         self._T[:3, :3] = np.matmul(self._T[:3, :3], R)
@@ -100,7 +101,7 @@ class TransformationMatrix(object):
         return self._T
 
     def get_R(self):
-        return self._T[:3, :3]
+        return self._R
 
     def get_P(self):
         return self._T[:3, 3].reshape(3, 1)
@@ -142,11 +143,11 @@ class TransformationMatrix(object):
         """
         euler angle order : Z-Y-X
         """
-        beta = np.arctan2(-self._T[2, 0],
-                          np.sqrt(self._T[0, 0]**2 + self._T[1, 0]**2))
+        beta = np.arctan2(-self._R[2, 0],
+                          np.sqrt(self._R[0, 0]**2 + self._R[1, 0]**2))
         if beta == np.deg2rad(90):
             alpha = 0
-            gamma = np.arctan2(self._T[0, 1], self._T[1, 1])
+            gamma = np.arctan2(self._R[0, 1], self._R[1, 1])
 
             if output_unit == 'deg':
                 return self._output_deg(alpha, beta, gamma)
@@ -154,15 +155,15 @@ class TransformationMatrix(object):
 
         elif beta == np.deg2rad(-90):
             alpha = 0
-            gamma = -np.arctan2(self._T[0, 1], self._T[1, 1])
+            gamma = -np.arctan2(self._R[0, 1], self._R[1, 1])
 
             if output_unit == 'deg':
                 return self._output_deg(alpha, beta, gamma)
             return (alpha, beta, gamma)
 
         c_beta = np.cos(beta)
-        alpha = np.arctan2(self._T[1, 0]/c_beta, self._T[0, 0]/c_beta)
-        gamma = np.arctan2(self._T[2, 1]/c_beta, self._T[2, 2]/c_beta)
+        alpha = np.arctan2(self._R[1, 0]/c_beta, self._R[0, 0]/c_beta)
+        gamma = np.arctan2(self._R[2, 1]/c_beta, self._R[2, 2]/c_beta)
 
         if output_unit == 'deg':
             return self._output_deg(alpha, beta, gamma)

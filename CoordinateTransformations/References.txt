@@ -1,6 +1,0 @@
-"""
-Ref: [1] Robotics: Control, Sensing, Vision and Intelligence,
-         by K.S.Fu, R.C.Gonzalez, C.S.G.Lee
-Ref: [2] Introduction to Robotics: Mechanics and Control, 3rd
-         edition, J.J.Craig
-"""

@@ -18,7 +18,7 @@ class TransformationMatrix(object):
 
     def _add_translation(self, P):
         self._T[:3, 3] = np.matmul(
-            self._T[:3, 3], P.reshape(3,)) + self._T[:3, 3]
+            self._T[:3, :3], P.reshape(3,)) + self._T[:3, 3]
 
     def _add_transformation(self, T):
         self._add_rotation(T[:3, :3])

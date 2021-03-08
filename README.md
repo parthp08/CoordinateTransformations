@@ -19,13 +19,20 @@ pip install git+https://github.com/parthp08/CoordinateTransformations
 ## Usage
 
 ```python
-from CoordinateTranformations import R_x, R2T
+from CoordinateTranformations import RotationMatrix, TrasformationMatrix
+
+# Create Rotation Matrix object
+R = RotationMatrix()
 
 # Generate Rotation of 30 degree about X-axis
-R_x(30, unit='deg')
+R.rotx(30, unit='deg')
 
-# Generate Homogeneous Transformation matrix from rotation matrix"
-R2T(R_x(30, unit='deg'))
+# Convert Rotation Matrix to Euler Angles in degrees
+alpha, beta, gamma = R.to_euler_angles(output_units='deg')
+
+# Get Rotation Matrix from Euler Angles
+R2 = RotationMatrix()
+R2.from_euler_angles(alpha, beta, gamma, unit='deg', order='zyx')
 ```
 for more example see tests files
 

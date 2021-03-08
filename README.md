@@ -32,7 +32,7 @@ alpha, beta, gamma = R.to_euler_angles(output_unit='deg')
 
 # Get Rotation Matrix from Euler Angles
 R2 = RotationMatrix()
-R2.from_euler_angles(alpha, beta, gamma, unit='deg', order='zyx')
+R2.from_euler_rotation(alpha, beta, gamma, unit='deg', order='zyx')
 ```
 for more example see tests files
 

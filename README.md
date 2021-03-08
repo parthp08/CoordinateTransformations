@@ -28,7 +28,7 @@ R = RotationMatrix()
 R.rotx(30, unit='deg')
 
 # Convert Rotation Matrix to Euler Angles in degrees
-alpha, beta, gamma = R.to_euler_angles(output_units='deg')
+alpha, beta, gamma = R.to_euler_angles(output_unit='deg')
 
 # Get Rotation Matrix from Euler Angles
 R2 = RotationMatrix()

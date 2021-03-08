@@ -5,7 +5,7 @@ Documentation: https://coordinatetransformations.readthedocs.io/en/latest/
 
 ## Installation
 
-Run the following to install:
+Run the following to install [older version, for latest changes please install directly from the repo]:
 
 ```python
 pip install CoordinateTransformations

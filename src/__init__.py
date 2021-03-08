@@ -1,3 +1,4 @@
 # functions to work with spatial descriptions and transformations for robotics analysis
 
-from .transformations import RotationMatrix, TransformationMatrix
+from .RotationMatrix import RotationMatrix
+from .TransformationMatrix import TransformationMatrix
